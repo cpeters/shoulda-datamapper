@@ -14,6 +14,8 @@ module Shoulda # :nodoc:
       #   default_error_message(:too_short, :count => 5)
       #   default_error_message(:too_long, :count => 60)
       def default_error_message(attribute, key, values = {})
+        return DataMapper::Validations::ValidationErrors.default_error_message(key, attribute *values.values)
+
         suffix = case key
         when :too_short
         when :too_long
